@@ -578,7 +578,7 @@ footer h3 {
   color:#fafafa;
 }
 .empresa img, .postulante img {
-  max-height:180px;
+  max-height:50px !important;
 }
 .empresa img, .empresa ol, .empresa h2,
 .postulante img, .postulante ol, .postulante h2 {
