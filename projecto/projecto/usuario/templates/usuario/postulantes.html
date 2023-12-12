@@ -1,0 +1,50 @@
+{% extends 'usuario/index.html' %}
+{% load static %}
+
+{% block title %}
+    Postulantes
+{% endblock  %}
+    
+
+{% block content %}
+<main id="postulantes">
+  <div class="contenedor">
+    <h1>> Empresas buscando talentos</h1>
+    <ul>
+      {% for usuario in usuarios  %}
+      <li>
+        <article id="{{usuario.nombre}}" class="postulante">
+          <img src="{{usuario.image.url}}" alt="{{usuario.nombre}}">
+          <h2>Nombre: {{usuario.nombre|title}} {{usuario.apellido|title}}</h2>
+          <ol>
+            <li>
+              <p><b>Acerca de mi:</b> {{usuario.acercaDeMi|title}}</p>
+            </li>
+            <li>
+              <p><b>Capacitacion:</b> {{usuario.capacitaciones|title}}</p>
+            </li>
+            <li>
+              {% if usuario.email == "none" %}
+
+                {% else%}
+                    <p><b>Correo de contacto:</b> {{usuario.email}}</p>
+                {% endif%}
+            </li>
+          </ol>
+          {% if datosempresa.link %}
+          <button class="boton">
+            <a href="{{usuario.link}}" target="_blank">link</a>
+          </button>
+          {% else %}
+          <button class="boton">
+            <a href="{% url 'postularse' %}">link</a>
+          </button>
+          {% endif %}
+        </article>
+      </li>
+      {%endfor%}
+    </ul>
+  </div>
+</main>
+{% endblock  %}
+    

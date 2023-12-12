@@ -1,0 +1,64 @@
+{% extends 'usuario/index.html' %}
+{% load static %}
+
+{% block title %}
+    Empresas
+{% endblock  %}
+    
+
+{% block content %}
+    
+<main id="empresas">
+<div class="contenedor">
+  <h1>> Empresas buscando talentos</h1>
+  <ul>
+    {% for datosempresa in datosempresas %}
+    <li>
+      <article id="{{datosempresa.nombreEmpresa}}" class="empresa">
+        <img src="{{datosempresa.image.url}}" alt="{{datosempresa.nombreEmpresa}}">
+        <h2>Nombre: {{datosempresa.nombreEmpresa}}</h2>
+        <ol>
+          <li>
+            <p><b>Datos de la empresa:</b> {{datosempresa.descripcionEmpresa}}</p>
+          </li>
+          <li>
+            <p><b>Ubicacion:</b> {{datosempresa.ubicacion}}</p>
+          </li>
+          <li>
+            <p><b>Beneficios:</b> {{datosempresa.beneficios}}</p>
+          </li>
+          <li>
+            <p><b>Requisitos:</b> {{datosempresa.requisitos}}</p>
+          </li>
+          <li>
+            <p><b>Puesto a cubrir:</b> {{datosempresa.puestoBuscado}}</p>
+          </li>
+          <li>
+            {% if datosempresa.email == "none"%}
+            
+          {% else %}
+              <p><b>Correo de contacto.</b> {{datosempresa.email}}</p>
+          {% endif %}
+          </li>
+        </ol>
+        {% if datosempresa.link %}
+        <button class="boton">
+          <a href="{{datosempresa.link}}" target="_blank">> ver empresa</a>
+        </button>
+        {% else %}
+        <button class="boton">
+          <a href="{% url 'empresas' %}">> ver empresa</a>
+        </button>
+        {% endif %}
+      </article>
+    </li>
+    {% endfor%}
+  </ul>
+
+</div>
+  
+</main>
+
+
+
+{% endblock  %}
